@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Bros Online</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Fundo azul clássico da primeira fase do Mario */
+            background: linear-gradient(135deg, #5c94fc 25%, #80b2ff 50%, #5c94fc 75%);
+            background-size: 400% 400%;
+            animation: marioBg 12s ease infinite;
+            color: #ffffff;
+            font-family: 'Press Start 2P', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #fcb040; /* Amarelo bloco de interrogação */
+            text-shadow: 3px 3px 0px #e52521, 6px 6px 0px #000;
+            margin-bottom: 25px;
+            text-align: center;
+            letter-spacing: 2px;
+            line-height: 1.4;
+        }
+
+        /* Moldura vermelha com borda externa amarela */
+        .game-wrapper {
+            width: 800px;
+            max-width: 100%;
+            background-color: #000000;
+            padding: 12px;
+            border: 6px solid #e52521;
+            box-shadow: 0 0 0 6px #fcb040, 0 20px 40px rgba(0, 0, 0, 0.8);
+            image-rendering: pixelated;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 500px;
+            background-color: #000;
+            position: relative;
+            border: 4px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #game {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Botão estilizado Vermelho do Mario */
+        .play-btn {
+            position: absolute;
+            z-index: 99;
+            padding: 20px 40px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #e52521;
+            border: 4px solid #fcb040;
+            box-shadow: 0 6px 0 #991010, 0 10px 20px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        .play-btn:hover {
+            background-color: #ff3b37;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #991010, 0 12px 22px rgba(252, 176, 64, 0.6);
+        }
+
+        .play-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #991010;
+        }
+
+        @keyframes marioBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 840px) {
+            #game-container {
+                height: 400px;
+            }
+            h1 {
+                font-size: 16px;
+            }
+            .play-btn {
+                font-size: 14px;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>SUPER MARIO BROS ONLINE</h1>
+
+    <div class="game-wrapper">
+        <div id="game-container">
+            <button id="start-btn" class="play-btn" onclick="startGame()">JOGAR</button>
+            <div id="game"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        EJS_player = '#game';
+        EJS_core = 'snes'; // Núcleo para arquivos .smc (Super Nintendo)
+        EJS_gameName = 'Super Mario Bros';
+        EJS_color = '#e52521';
+        EJS_startOnLoaded = true;
+        EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+        EJS_gameUrl = 'mariosnes.smc'; // Nome do arquivo configurado
+        EJS_language = 'en-US';
+
+        function startGame() {
+            document.getElementById('start-btn').style.display = 'none';
+
+            const loader = document.createElement('script');
+            loader.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+            document.body.appendChild(loader);
+        }
+    </script>
+
+</body>
+</html>
